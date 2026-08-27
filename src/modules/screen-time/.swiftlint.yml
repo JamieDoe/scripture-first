@@ -1,0 +1,15 @@
+# SwiftLint configuration for the ExpoScreenTime native module.
+# Lint the module's own Swift source. The app-level `ios/` folder is generated
+# by `expo prebuild` and gitignored, so it is intentionally not linted here.
+included:
+  - ios
+
+line_length:
+  warning: 120
+  error: 200
+
+opt_in_rules:
+  - empty_count
+  - explicit_init
+  - first_where
+  - redundant_nil_coalescing
