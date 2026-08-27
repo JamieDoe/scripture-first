@@ -12,6 +12,7 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "src/modules/screen-time/plugin/withFamilyControls.js"
+    "src/modules/screen-time/plugin/withFamilyControls.js",
+    "babel.config.js"
   ]
 }
