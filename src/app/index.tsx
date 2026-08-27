@@ -29,7 +29,7 @@ export default function Index() {
   }
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16 }}>
+    <View className="flex flex-1 flex-col items-center justify-center gap-4">
       <Text>Status: {status}</Text>
       <Button
         title={isRequesting ? 'Requesting…' : 'Request authorization'}

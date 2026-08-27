@@ -22,6 +22,9 @@
     "android": {
       "package": "com.jamiedoe.scripturefirst"
     },
+    "web": {
+      "bundler": "metro"
+    },
     "extra": {
       "eas": {
         "build": {
