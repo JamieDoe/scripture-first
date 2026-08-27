@@ -11,9 +11,9 @@ The app will be built with Expo/React Native, with native Swift integrations for
 - [ x ] Create and clean the Expo project
 - [ x ] Configure the iOS project for Family Controls
 - [ x ] Request Screen Time authorisation
-- [ ] Allow the user to select apps
-- [ ] Shield a selected app using `ManagedSettings`
-- [ ] Create a basic `ShieldConfiguration` extension
+- [ x ] Allow the user to select apps
+- [ x ] Shield a selected app using `ManagedSettings`
+- [ x ] Create a basic `ShieldConfiguration` extension
 - [ ] Display a custom shield when the user opens a blocked app
 - [ ] Create a `ShieldAction` extension
 - [ x ] Communicate between the native Screen Time extensions and the main app
