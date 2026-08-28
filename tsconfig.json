@@ -3,8 +3,12 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "@/assets/*": ["./assets/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@/assets/*": [
+        "./assets/*"
+      ]
     }
   },
   "include": [
@@ -13,6 +17,7 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "src/modules/screen-time/plugin/withFamilyControls.js",
-    "babel.config.js"
+    "babel.config.js",
+    "nativewind-env.d.ts"
   ]
 }
