@@ -1,12 +1,13 @@
 import ScreenTime, { type AppSelectionSummary } from '@scripture-first/screen-time';
 import { useEffect, useState } from 'react';
 import { Button, Text, View } from 'react-native';
-import { useScreenTimeAuthorization } from '../features/screen-time/hooks/useScreenTimeAuthorization';
+import { useScreenTimeAuthorization } from '../../features/screen-time/hooks/useScreenTimeAuthorization';
 
 export default function Index() {
   const { status, isRequesting, request } = useScreenTimeAuthorization();
   const [summary, setSummary] = useState<AppSelectionSummary | null>(null);
   const [blocking, setBlocking] = useState(false);
+  console.log('Hello Home 🚀');
 
   useEffect(() => {
     setSummary(ScreenTime.getSelectionSummary());
@@ -29,7 +30,7 @@ export default function Index() {
   }
 
   return (
-    <View className="flex flex-1 flex-col items-center justify-center gap-4">
+    <View className="flex flex-1 flex-col items-center justify-center gap-4 bg-blue-200">
       <Text>Status: {status}</Text>
       <Button
         title={isRequesting ? 'Requesting…' : 'Request authorization'}

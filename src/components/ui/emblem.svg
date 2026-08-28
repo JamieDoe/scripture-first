@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="269" height="164" viewBox="0 0 269 164" fill="none">
+<title>Scripture First - dawn emblem</title>
+<defs>
+<radialGradient id="glow" cx="0.5" cy="0.62" r="0.5">
+<stop offset="0" stop-color="#E2A34A" stop-opacity="0.40"></stop>
+<stop offset="0.44" stop-color="#E2A34A" stop-opacity="0.14"></stop>
+<stop offset="0.72" stop-color="#E2A34A" stop-opacity="0"></stop>
+</radialGradient>
+<radialGradient id="dome" cx="0.33" cy="0.20" r="1.15">
+<stop offset="0" stop-color="#FFF6E4"></stop>
+<stop offset="0.30" stop-color="#F8CE7C"></stop>
+<stop offset="0.58" stop-color="#DFA349"></stop>
+<stop offset="0.88" stop-color="#B7761F"></stop>
+<stop offset="1" stop-color="#9A5F14"></stop>
+</radialGradient>
+<radialGradient id="domeInner" cx="0.5" cy="1" r="0.9">
+<stop offset="0" stop-color="#78440C" stop-opacity="0.32"></stop>
+<stop offset="0.55" stop-color="#78440C" stop-opacity="0.06"></stop>
+<stop offset="1" stop-color="#78440C" stop-opacity="0"></stop>
+</radialGradient>
+<radialGradient id="domeTop" cx="0.5" cy="0" r="0.55">
+<stop offset="0" stop-color="#FFF7E5" stop-opacity="0.65"></stop>
+<stop offset="1" stop-color="#FFF7E5" stop-opacity="0"></stop>
+</radialGradient>
+<radialGradient id="spec" cx="0.5" cy="0.5" r="0.5">
+<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.82"></stop>
+<stop offset="0.72" stop-color="#FFFFFF" stop-opacity="0"></stop>
+</radialGradient>
+<radialGradient id="contact" cx="0.5" cy="0.5" r="0.5">
+<stop offset="0" stop-color="#855214" stop-opacity="0.30"></stop>
+<stop offset="0.7" stop-color="#855214" stop-opacity="0"></stop>
+</radialGradient>
+<linearGradient id="horizon" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#C79A3E" stop-opacity="0"></stop>
+<stop offset="0.20" stop-color="#C79A3E" stop-opacity="0.5"></stop>
+<stop offset="0.80" stop-color="#C79A3E" stop-opacity="0.5"></stop>
+<stop offset="1" stop-color="#C79A3E" stop-opacity="0"></stop>
+</linearGradient>
+<filter id="softBlur" x="-30%" y="-60%" width="160%" height="220%">
+<feGaussianBlur stdDeviation="7"></feGaussianBlur>
+</filter>
+<filter id="specBlur" x="-40%" y="-40%" width="180%" height="180%">
+<feGaussianBlur stdDeviation="2"></feGaussianBlur>
+</filter>
+<clipPath id="domeClip">
+<path d="M50.5 134 A84 84 0 0 1 218.5 134 Z"></path>
+</clipPath>
+</defs>
+
+<ellipse cx="134.5" cy="34" rx="176.5" ry="122" fill="url(#glow)"></ellipse>
+<path d="M0 134 A134.5 134.5 0 0 1 269 134" stroke="#C79A3E" stroke-opacity="0.20" stroke-width="1" fill="none"></path>
+<path d="M23.5 134 A111 111 0 0 1 245.5 134" stroke="#C79A3E" stroke-opacity="0.30" stroke-width="1" fill="none"></path>
+<ellipse cx="134.5" cy="135" rx="96.5" ry="15" fill="url(#contact)" filter="url(#softBlur)"></ellipse>
+
+<g clip-path="url(#domeClip)">
+<circle cx="134.5" cy="134" r="84" fill="url(#dome)"></circle>
+<circle cx="134.5" cy="134" r="84" fill="url(#domeInner)"></circle>
+<path d="M50.5 134 A84 84 0 0 1 218.5 134 Z" fill="url(#domeTop)"></path>
+<ellipse cx="77.5" cy="84.5" rx="27" ry="17.5" fill="url(#spec)" filter="url(#specBlur)"></ellipse>
+</g>
+
+<rect x="0" y="133.5" width="269" height="1" fill="url(#horizon)"></rect>
+</svg>
