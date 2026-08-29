@@ -1,3 +1,45 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import 'uniwind';
+
+@theme {
+  --color-background: #f6f2ea;
+  --color-background-warm: #fbf7f0;
+  --color-card: #ffffff;
+  --color-card-sunk: #efe9dd;
+  --color-border: #e3dccc;
+  --color-border-strong: #d8d2c4;
+
+  --color-foreground: #1c1f2a;
+  --color-muted-foreground: #5b5f6e;
+  --color-subtle-foreground: #8f8a7e;
+  --color-chevron: #c0baac;
+
+  --color-primary: #c79a3e;
+  --color-primary-light: #d3a64b;
+  --color-primary-deep: #b4862c;
+  --color-primary-pressed: #bc8c33;
+  --color-primary-foreground: #fffdf7;
+  --color-primary-text: #8a6216;
+  --color-primary-text-strong: #6e4e11;
+
+  --color-emblem-highlight: #fff6e4;
+  --color-emblem-light: #f8ce7c;
+  --color-emblem-mid: #dfa349;
+  --color-emblem-shade: #b7761f;
+  --color-emblem-core: #9a5f14;
+  --color-dawn-peach-1: #f8d3a6;
+  --color-dawn-cream-1: #faead6;
+  --color-glass-bar: rgba(255, 251, 242, 0.66);
+  --color-glass-nav: rgba(255, 253, 248, 0.55);
+
+  --font-serif: 'Newsreader-Regular';
+  --font-serif-medium: 'Newsreader-Medium';
+
+  --radius-capsule: 9999px;
+  --radius-card-hero: 32px;
+  --radius-card: 24px;
+
+  --shadow-btn-primary:
+    0px 18px 32px -10px rgba(166, 120, 32, 0.6), inset 0px 1px 3px rgba(255, 255, 255, 0.45),
+    inset 0px -1px 4px rgba(120, 84, 20, 0.35);
+}
