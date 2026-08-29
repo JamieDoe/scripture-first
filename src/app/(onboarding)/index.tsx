@@ -1,13 +1,17 @@
+import { Button } from '@/components/ui/button';
 import Emblem from '@/components/ui/emblem.svg';
-import { Button, View } from 'react-native';
+import { View } from 'react-native';
 
 export default function OnboardingView() {
   console.log('Hello Onboarding 🚀');
-  return (
-    <View className="flex-1 items-center justify-center ">
-      <Emblem width={264} height={160} />
 
-      <Button title="hello" />
+  return (
+    <View className="flex-1 items-center justify-center">
+      <Emblem width={264} height={160} />
+      <Button title="Primary" subTitle="3 selected" />
+      <Button title="Secondary" variant="secondary" subTitle="3 selected" />
+      <Button title="Outline" variant="ghost" subTitle="3 selected" />
+      <Button title="Text" variant="text" />
     </View>
   );
 }
