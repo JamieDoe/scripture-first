@@ -1,22 +1,19 @@
+import { Screen } from '@/components/layout/screen';
 import { Button } from '@/components/ui/button';
 import Emblem from '@/components/ui/emblem.svg';
 import { router } from 'expo-router';
-import { View } from 'react-native';
 
 export default function OnboardingView() {
-  console.log('Hello Onboarding 🚀');
-
   return (
-    <View className="flex-1 items-center justify-center">
+    <Screen className="items-center justify-between">
       <Emblem width={264} height={160} />
+
       <Button
-        title="Primary"
-        subTitle="3 selected"
+        title="Begin"
+        className="w-full"
+        size="lg"
         onPress={() => router.navigate('/(dev)/componenets')}
       />
-      <Button title="Secondary" variant="secondary" subTitle="3 selected" />
-      <Button title="Outline" variant="ghost" subTitle="3 selected" />
-      <Button title="Text" variant="text" />
-    </View>
+    </Screen>
   );
 }
