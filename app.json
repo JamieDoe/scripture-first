@@ -13,7 +13,13 @@
     "plugins": [
       "expo-router",
       "./src/modules/screen-time/plugin/withFamilyControls",
-      ["@bacons/apple-targets", { "teamId": "CUVWYY83Y8" }]
+      [
+        "@bacons/apple-targets",
+        {
+          "teamId": "CUVWYY83Y8"
+        }
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,
@@ -36,7 +42,9 @@
                   "bundleIdentifier": "com.jamiedoe.scripturefirst.ShieldConfig",
                   "entitlements": {
                     "com.apple.developer.family-controls": true,
-                    "com.apple.security.application-groups": ["group.com.jamiedoe.scripturefirst"]
+                    "com.apple.security.application-groups": [
+                      "group.com.jamiedoe.scripturefirst"
+                    ]
                   }
                 },
                 {
@@ -44,7 +52,9 @@
                   "bundleIdentifier": "com.jamiedoe.scripturefirst.ShieldAction",
                   "entitlements": {
                     "com.apple.developer.family-controls": true,
-                    "com.apple.security.application-groups": ["group.com.jamiedoe.scripturefirst"]
+                    "com.apple.security.application-groups": [
+                      "group.com.jamiedoe.scripturefirst"
+                    ]
                   }
                 }
               ]

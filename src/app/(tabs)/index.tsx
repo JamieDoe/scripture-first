@@ -1,9 +1,11 @@
+import { useOnboarding } from '@/stores/onboarding.store';
 import ScreenTime, { type AppSelectionSummary } from '@scripture-first/screen-time';
 import { useEffect, useState } from 'react';
 import { Button, Text, View } from 'react-native';
 import { useScreenTimeAuthorization } from '../../features/screen-time/hooks/useScreenTimeAuthorization';
 
 export default function Index() {
+  const reset = useOnboarding((state) => state.reset);
   const { status, isRequesting, request } = useScreenTimeAuthorization();
   const [summary, setSummary] = useState<AppSelectionSummary | null>(null);
   const [blocking, setBlocking] = useState(false);
@@ -43,6 +45,8 @@ export default function Index() {
       <Button title="Block" onPress={onBlock} />
       <Button title="Unblock" onPress={onUnblock} />
       <Text>{blocking ? 'Blocking ON' : 'Blocking OFF'}</Text>
+
+      <Button title="reset" onPress={reset} />
     </View>
   );
 }
