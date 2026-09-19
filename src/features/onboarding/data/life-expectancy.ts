@@ -1,11 +1,5 @@
-/**
- * Approximate remaining life expectancy in years, by current age.
- *
- * Deliberately not `FIXED_LIFESPAN - age`: that hits zero at the cap, so the
- * projection collapses to "0 years" for anyone near it. Real remaining life
- * expectancy tapers instead — roughly 9 years at 80, 4 at 90 — so this stays
- * meaningful at every age the ruler allows.
- */
+// Approximate remaining life expectancy in years, by current age.
+
 type Anchor = { age: number; remaining: number };
 
 const ANCHORS: Anchor[] = [
@@ -23,10 +17,10 @@ const ANCHORS: Anchor[] = [
 
 export function remainingYearsFor(age: number): number {
   const first = ANCHORS[0];
-  const last = ANCHORS[ANCHORS.length - 1];
+  const last = ANCHORS.at(-1);
 
   if (age <= first.age) return first.remaining;
-  if (age >= last.age) return last.remaining;
+  if (age >= (last?.age ?? first.age)) return last?.remaining ?? first.remaining;
 
   const upperIndex = ANCHORS.findIndex((anchor) => age <= anchor.age);
   const lower = ANCHORS[upperIndex - 1];

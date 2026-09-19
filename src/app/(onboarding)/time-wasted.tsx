@@ -94,7 +94,7 @@ export default function TimeWastedView() {
       <View className="flex items-center gap-9 px-4 pt-16">
         <FadeUp index={0} className="w-full items-center">
           <Text className="text-foreground text-onboarding-hero text-center font-serif">
-            That's about{' '}
+            That's about {'\n'}
             <Text className="text-primary-deep font-serif-regular">
               {display} {unitLabel}
             </Text>{' '}
