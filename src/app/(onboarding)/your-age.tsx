@@ -10,7 +10,8 @@ const MIN_AGE = 13;
 const MAX_AGE = 100;
 
 export default function YourAgeView() {
-  const { age, set } = useOnboarding((state) => state);
+  const age = useOnboarding((state) => state.age);
+  const set = useOnboarding((state) => state.set);
 
   return (
     <StepScreen
@@ -36,6 +37,7 @@ export default function YourAgeView() {
         {/* -mx-5 cancels the screen padding so the ruler bleeds to both edges. */}
         <FadeUp index={3} className="-mx-5">
           <RulerPicker
+            label="Age"
             min={MIN_AGE}
             max={MAX_AGE}
             value={age}

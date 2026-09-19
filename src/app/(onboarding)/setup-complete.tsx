@@ -7,12 +7,12 @@ import { OnboardingScreen } from '@/features/onboarding/components/onboarding-sc
 import { useOnboarding } from '@/features/onboarding/stores/onboarding.store';
 
 export default function SetupCompleteView() {
-  const { complete } = useOnboarding((state) => state);
+  const complete = useOnboarding((state) => state.complete);
 
   function handlePress() {
     complete();
 
-    return router.push('/(tabs)');
+    return router.replace('/(tabs)');
   }
 
   return (
@@ -28,7 +28,7 @@ export default function SetupCompleteView() {
             <Text className="text-8xl">📜</Text>
           </FadeUp>
           <FadeUp index={1} className="w-full items-center">
-            <Text className="text-foreground text-center font-serif text-6xl leading-16">
+            <Text className="text-foreground text-onboarding-hero text-center font-serif">
               Ready when <Text className="text-primary-deep font-serif-regular">you are</Text>
             </Text>
           </FadeUp>

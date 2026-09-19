@@ -1,4 +1,5 @@
 import { FadeUp } from '@/components/ui/fade-up';
+import { RollingNumber } from '@/components/ui/rolling-number';
 import { SegmentedControl } from '@/components/ui/segmented-control';
 import { StepScreen } from '@/features/onboarding/components/step-screen';
 import { READING_DURATION_OPTIONS } from '@/features/onboarding/data/reading-duration';
@@ -12,7 +13,8 @@ const OPTIONS = READING_DURATION_OPTIONS.map((option) => ({
 }));
 
 export default function ReadingDurationView() {
-  const { readingMinutes, set } = useOnboarding((state) => state);
+  const readingMinutes = useOnboarding((state) => state.readingMinutes);
+  const set = useOnboarding((state) => state.set);
 
   const description =
     READING_DURATION_OPTIONS.find((option) => option.minutes === readingMinutes)?.description ?? '';
@@ -34,10 +36,15 @@ export default function ReadingDurationView() {
         <FadeUp index={2}>
           <View className="items-center gap-2">
             <View className="flex-row items-end gap-1.5">
-              <Text className="text-foreground font text-7xl font-bold">{readingMinutes}</Text>
+              <RollingNumber
+                value={readingMinutes}
+                className="text-foreground text-7xl font-bold"
+              />
               <Text className="text-muted-foreground pb-3 text-xl font-medium">min</Text>
             </View>
-            <Text className="text-muted-foreground text-base">{description}</Text>
+            <FadeUp key={description} delay={0}>
+              <Text className="text-muted-foreground text-base">{description}</Text>
+            </FadeUp>
           </View>
         </FadeUp>
 

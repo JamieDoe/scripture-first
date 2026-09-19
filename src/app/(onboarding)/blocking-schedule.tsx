@@ -5,8 +5,9 @@ import { useOnboarding } from '@/features/onboarding/stores/onboarding.store';
 import { router } from 'expo-router';
 import { Text } from 'react-native';
 
-export default function DailyScreenTimeView() {
-  const { schedulePreset, set } = useOnboarding((state) => state);
+export default function BlockingScheduleView() {
+  const schedulePreset = useOnboarding((state) => state.schedulePreset);
+  const set = useOnboarding((state) => state.set);
 
   return (
     <StepScreen

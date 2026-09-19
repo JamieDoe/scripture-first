@@ -1,37 +1,33 @@
 import { cn } from '@/utils/cn';
 import * as Haptics from 'expo-haptics';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Text, View, type LayoutChangeEvent } from 'react-native';
+import { Text, View, type AccessibilityActionEvent, type LayoutChangeEvent } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
-  runOnJS,
   useAnimatedRef,
   useAnimatedScrollHandler,
   useAnimatedStyle,
   useSharedValue,
   type SharedValue,
 } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 
 const TICK_SPACING = 14; // px between ticks
 const MAJOR_EVERY = 5; // taller, labelled tick every N values
 const LABEL_WIDTH = 40; // labels overflow their tick column so they never wrap
 const FALLOFF = TICK_SPACING * 6; // distance over which the depth effect tapers off
+const ACCESSIBILITY_ACTIONS = [{ name: 'increment' }, { name: 'decrement' }] as const;
 
 type RulerPickerProps = {
   min: number;
   max: number;
   value: number;
   onChange: (value: number) => void;
+  label: string;
 };
 
-/**
- * A horizontal tick ruler you drag to pick a whole number. Snaps to each tick,
- * fires a selection haptic as the value changes, and marks the current value
- * with a fixed centre line. Ticks fade out toward the edges, and the
- * edges fade into the page background.
- */
-export function RulerPicker({ min, max, value, onChange }: Readonly<RulerPickerProps>) {
+export function RulerPicker({ min, max, value, onChange, label }: Readonly<RulerPickerProps>) {
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const initial = useRef(value);
   const [width, setWidth] = useState(0);
@@ -49,8 +45,6 @@ export function RulerPicker({ min, max, value, onChange }: Readonly<RulerPickerP
     [onChange],
   );
 
-  // Scroll position drives the depth effect on the UI thread; only a changed
-  // value hops back to JS for the haptic and the store write.
   const onScroll = useAnimatedScrollHandler((event) => {
     scrollX.value = event.contentOffset.x;
 
@@ -58,7 +52,7 @@ export function RulerPicker({ min, max, value, onChange }: Readonly<RulerPickerP
 
     if (next !== index.value) {
       index.value = next;
-      runOnJS(commit)(min + next);
+      scheduleOnRN(commit, min + next);
     }
   });
 
@@ -72,8 +66,29 @@ export function RulerPicker({ min, max, value, onChange }: Readonly<RulerPickerP
     setWidth(event.nativeEvent.layout.width);
   }, []);
 
+  // VoiceOver swipe up/down nudges the scroll position, which then drives the
+  // same onScroll path as a drag, so the haptic and store write stay in one place.
+  const onAccessibilityAction = useCallback(
+    (event: AccessibilityActionEvent) => {
+      const step = event.nativeEvent.actionName === 'increment' ? 1 : -1;
+      const next = Math.min(Math.max(value + step, min), max);
+
+      scrollRef.current?.scrollTo({ x: (next - min) * TICK_SPACING, animated: false });
+    },
+    [value, min, max, scrollRef],
+  );
+
   return (
-    <View className="w-full" onLayout={onLayout}>
+    <View
+      className="w-full"
+      onLayout={onLayout}
+      accessible
+      accessibilityRole="adjustable"
+      accessibilityLabel={label}
+      accessibilityValue={{ min, max, now: value }}
+      accessibilityActions={ACCESSIBILITY_ACTIONS}
+      onAccessibilityAction={onAccessibilityAction}
+    >
       <Animated.ScrollView
         ref={scrollRef}
         horizontal

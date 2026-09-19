@@ -16,25 +16,33 @@ const COUNT_ANIMATION_SETTINGS = {
 
 const HOURS_PER_DAY = 24;
 const MONTHS_PER_YEAR = 12;
+const DAYS_PER_YEAR = 365;
+const MINUTES_PER_HOUR = 60;
+
+const BIBLE_READ_HOURS = 70;
+const DAILY_SCRIPTURE_MINUTES = 15;
+
+const READS_PER_YEAR =
+  (DAILY_SCRIPTURE_MINUTES * DAYS_PER_YEAR) / MINUTES_PER_HOUR / BIBLE_READ_HOURS;
 
 export default function TimeWastedView() {
   const [display, setDisplay] = useState(0);
   const [countDone, setCountDone] = useState(false);
 
-  const { dailyScreenTime, age } = useOnboarding((state) => state);
+  const dailyScreenTime = useOnboarding((state) => state.dailyScreenTime);
+  const age = useOnboarding((state) => state.age);
   const reduceMotion = useReducedMotion();
 
   const hours =
     DAILY_SCREEN_TIME_OPTIONS.find((option) => option.value === dailyScreenTime)?.midpointHours ??
     0;
 
-  // Share of each day spent scrolling, projected across the years they can expect.
   const projectedYears = (hours / HOURS_PER_DAY) * remainingYearsFor(age ?? 0);
 
-  // Under a year the yearly figure rounds to "0", so switch to months instead.
   const inMonths = projectedYears < 1;
   const amount = Math.round(inMonths ? projectedYears * MONTHS_PER_YEAR : projectedYears);
-  const unit = inMonths ? (amount === 1 ? 'month' : 'months') : amount === 1 ? 'year' : 'years';
+  const unit = inMonths ? 'month' : 'year';
+  const unitLabel = amount === 1 ? unit : `${unit}s`;
 
   // Count animation on load
   useEffect(() => {
@@ -85,10 +93,10 @@ export default function TimeWastedView() {
     >
       <View className="flex items-center gap-9 px-4 pt-16">
         <FadeUp index={0} className="w-full items-center">
-          <Text className="text-foreground text-center font-serif text-6xl leading-20">
+          <Text className="text-foreground text-onboarding-hero text-center font-serif">
             That's about{' '}
             <Text className="text-primary-deep font-serif-regular">
-              {display} {unit}
+              {display} {unitLabel}
             </Text>{' '}
             {'\n'}
             of your life
@@ -99,13 +107,16 @@ export default function TimeWastedView() {
           <>
             <FadeUp index={0} className="w-full items-center">
               <Text className="text-muted-foreground px-4 text-center text-xl">
-                With just 15 minutes devoted to scripture each day...
+                With just {DAILY_SCRIPTURE_MINUTES} minutes devoted to scripture each day...
               </Text>
             </FadeUp>
             <FadeUp index={1} className="w-full items-center">
               <Text className="text-muted-foreground px-4 text-center text-2xl">
                 you&apos;d read the bible at least{' '}
-                <Text className="text-primary-deep font-semibold">1.3x</Text> over this year
+                <Text className="text-primary-deep font-semibold">
+                  {READS_PER_YEAR.toFixed(1)}x
+                </Text>{' '}
+                every year
               </Text>
             </FadeUp>
           </>

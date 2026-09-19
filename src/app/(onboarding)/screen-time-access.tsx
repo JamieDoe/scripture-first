@@ -7,6 +7,7 @@ import { useScreenTimeAuthorization } from '@/features/screen-time/hooks/useScre
 import { router } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import { Text, View } from 'react-native';
+import { useCSSVariable } from 'uniwind';
 
 export default function ScreenTimeAccessView() {
   const { status, isRequesting, request } = useScreenTimeAuthorization();
@@ -42,7 +43,7 @@ export default function ScreenTimeAccessView() {
 
         <View className="flex w-full gap-3">
           <FadeUp index={1}>
-            <Text className="text-foreground font-serif text-[40px] leading-14">
+            <Text className="text-foreground text-onboarding-title font-serif">
               Great! First we need
               <Text className="text-primary-deep font-serif-regular"> permission </Text>to access
               your Screen Time
@@ -68,10 +69,12 @@ export default function ScreenTimeAccessView() {
 }
 
 function TickTile({ text }: Readonly<{ text: string }>) {
+  const tint = useCSSVariable('--color-primary-deep') as string | undefined;
+
   return (
     <Card variant="elevated" className="w-full flex-row items-center gap-4">
       <View className="bg-card-sunk h-10 w-10 items-center justify-center rounded-full">
-        <SymbolView name="checkmark" size={16} weight="semibold" tintColor="#b4862c" />
+        <SymbolView name="checkmark" size={16} weight="semibold" tintColor={tint} />
       </View>
 
       <Text className="text-foreground flex-1 text-base">{text}</Text>

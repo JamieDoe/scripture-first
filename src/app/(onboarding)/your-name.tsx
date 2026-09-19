@@ -4,21 +4,27 @@ import { OnboardingScreen } from '@/features/onboarding/components/onboarding-sc
 import { useOnboarding } from '@/features/onboarding/stores/onboarding.store';
 import { router } from 'expo-router';
 import { Text, TextInput, View } from 'react-native';
+import { useCSSVariable } from 'uniwind';
 
 export default function YourNameView() {
   const name = useOnboarding((state) => state.name);
   const set = useOnboarding((state) => state.set);
+  const placeholderColor = useCSSVariable('--color-subtle-foreground') as string | undefined;
+
+  const trimmed = name?.trim() ?? '';
+
+  function onNext() {
+    if (!trimmed) return;
+
+    set({ name: trimmed });
+    router.push('/(onboarding)/your-age');
+  }
 
   return (
     <OnboardingScreen
       contentClassName="justify-between"
       footer={
-        <Button
-          title="Next"
-          size="lg"
-          className="w-full"
-          onPress={() => router.push('/(onboarding)/your-age')}
-        />
+        <Button title="Next" size="lg" className="w-full" disabled={!trimmed} onPress={onNext} />
       }
     >
       <View className="gap-7 pt-20">
@@ -34,10 +40,15 @@ export default function YourNameView() {
               value={name ?? ''}
               onChangeText={(value) => set({ name: value })}
               placeholder="Type here"
+              placeholderTextColor={placeholderColor}
               className="text-foreground text-xl"
+              accessibilityLabel="Your name"
               autoFocus
+              autoCapitalize="words"
+              autoComplete="given-name"
+              textContentType="givenName"
               returnKeyType="done"
-              onSubmitEditing={() => router.push('/(onboarding)/your-age')}
+              onSubmitEditing={onNext}
             />
           </View>
         </FadeUp>

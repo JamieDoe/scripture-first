@@ -11,7 +11,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import '../global.css';
 
 export default function RootLayout() {
-  const { hasOnboarded } = useOnboarding((state) => state);
+  const hasOnboarded = useOnboarding((state) => state.hasOnboarded);
   const [loaded] = useFonts({
     Newsreader_300Light,
     Newsreader_400Regular,
@@ -21,20 +21,15 @@ export default function RootLayout() {
 
   if (!loaded) return null;
 
-  console.log('hasOnboarded', hasOnboarded);
-
   return (
     <SafeAreaProvider>
       <Stack screenOptions={{ headerShown: false, contentStyle: { flex: 1 } }}>
-        {/* <Stack.Protected guard={!hasOnboarded}>
+        <Stack.Protected guard={!hasOnboarded}>
           <Stack.Screen name="(onboarding)" />
         </Stack.Protected>
         <Stack.Protected guard={hasOnboarded}>
           <Stack.Screen name="(tabs)" />
-        </Stack.Protected> */}
-        <Stack>
-          <Stack.Screen name="(tabs)" />
-        </Stack>
+        </Stack.Protected>
       </Stack>
     </SafeAreaProvider>
   );

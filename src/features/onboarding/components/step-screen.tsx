@@ -38,7 +38,7 @@ export function StepScreen({
     >
       <View className="gap-2 pt-16">
         <FadeUp index={0}>
-          <Text className="text-foreground font-serif text-[40px] leading-tight">{title}</Text>
+          <Text className="text-foreground text-onboarding-title font-serif">{title}</Text>
         </FadeUp>
         {subtitle ? (
           <FadeUp index={1}>

@@ -27,7 +27,7 @@ const buttonVariants = cva('flex flex-row gap-2 rounded-full items-center justif
   variants: {
     variant: {
       primary:
-        'bg-gradient-to-b from-primary-light via-primary to-primary-deep shadow-btn-primary active:from-[#C08F32] active:via-primary-deep active:to-[#A2761F]',
+        'bg-linear-to-b from-primary-light via-primary to-primary-deep shadow-btn-primary active:from-primary-pressed-light active:via-primary-deep active:to-primary-pressed-deep',
       secondary: 'bg-primary/15 active:bg-primary/20 ',
       ghost: 'bg-transparent active:bg-foreground/3',
       text: 'bg-transparent',

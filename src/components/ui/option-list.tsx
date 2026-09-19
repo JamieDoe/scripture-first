@@ -1,5 +1,5 @@
-import { cn } from '@/utils/cn';
 import { FadeUp } from '@/components/ui/fade-up';
+import { cn } from '@/utils/cn';
 import * as Haptics from 'expo-haptics';
 import { Pressable, Text, View } from 'react-native';
 
@@ -22,12 +22,17 @@ export function OptionList<T extends string>({
   onSelect,
 }: Readonly<OptionListProps<T>>) {
   return (
-    <View className="gap-3">
+    <View className="gap-3" accessibilityRole="radiogroup">
       {options.map((option, i) => {
         const selected = value === option.value;
         return (
           <FadeUp key={option.value} index={2 + i}>
             <Pressable
+              accessibilityRole="radio"
+              accessibilityState={{ checked: selected }}
+              accessibilityLabel={
+                option.subLabel ? `${option.label}, ${option.subLabel}` : option.label
+              }
               onPress={() => {
                 Haptics.selectionAsync();
                 onSelect(option.value);

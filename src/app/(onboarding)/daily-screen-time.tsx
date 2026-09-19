@@ -6,7 +6,8 @@ import { router } from 'expo-router';
 import { Text } from 'react-native';
 
 export default function DailyScreenTimeView() {
-  const { dailyScreenTime, set } = useOnboarding((state) => state);
+  const dailyScreenTime = useOnboarding((state) => state.dailyScreenTime);
+  const set = useOnboarding((state) => state.set);
 
   return (
     <StepScreen

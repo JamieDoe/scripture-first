@@ -2,9 +2,11 @@ import { createMMKV } from 'react-native-mmkv';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { ExperienceValue } from '../data/bible-experience';
+import { ScheduleValue } from '../data/blocking-schedule';
 import { DailyScreenTimeValue } from '../data/daily-screen-time';
+import { DenominationValue } from '../data/denominations';
 
-export const storage = createMMKV();
+const storage = createMMKV();
 
 const mmkvStorage = {
   getItem: (k: string) => storage.getString(k) ?? null,
@@ -16,9 +18,9 @@ type OnboardingData = {
   name?: string;
   age: number;
   dailyScreenTime: DailyScreenTimeValue;
-  denomination?: string;
-  bibleExperience?: string;
-  schedulePreset?: string;
+  denomination?: DenominationValue;
+  bibleExperience?: ExperienceValue;
+  schedulePreset?: ScheduleValue;
   readingMinutes: number;
   unlockMinutes: number;
 };
@@ -31,9 +33,10 @@ type OnboardingState = OnboardingData & {
 };
 
 const DEFAULTS: OnboardingData = {
-  age: 20,
+  age: 25,
   dailyScreenTime: DailyScreenTimeValue.BETWEEN_2_4,
   bibleExperience: ExperienceValue.INTERMEDIATE,
+  schedulePreset: ScheduleValue.MORNING,
   readingMinutes: 3,
   unlockMinutes: 15,
 };

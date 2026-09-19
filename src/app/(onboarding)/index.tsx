@@ -4,15 +4,8 @@ import { Text, View } from 'react-native';
 import { Button } from '@/components/ui/button';
 import { FadeUp } from '@/components/ui/fade-up';
 import { OnboardingScreen } from '@/features/onboarding/components/onboarding-screen';
-import { useOnboarding } from '@/features/onboarding/stores/onboarding.store';
 
 export default function WelcomeView() {
-  const hasOnboarded = useOnboarding((state) => state.hasOnboarded);
-
-  if (hasOnboarded) {
-    router.replace('/(tabs)');
-  }
-
   return (
     <OnboardingScreen
       contentClassName="items-center justify-between"
@@ -39,11 +32,9 @@ export default function WelcomeView() {
           <View className="bg-primary/10 aspect-square h-30 w-30 items-center justify-center rounded-4xl"></View>
         </FadeUp>
         <FadeUp index={1} className="w-full items-center">
-          <Text className="text-foreground text-center font-serif text-[56px] leading-16">
+          <Text className="text-foreground text-onboarding-hero text-center font-serif">
             Welcome to{'\n'}
-            <Text className="text-primary-deep text-center font-serif text-[56px] leading-16">
-              Scripture First
-            </Text>
+            <Text className="text-primary-deep">Scripture First</Text>
           </Text>
         </FadeUp>
         <FadeUp index={2} className="w-full items-center">

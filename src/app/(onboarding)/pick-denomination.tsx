@@ -13,7 +13,8 @@ import Animated, {
 } from 'react-native-reanimated';
 
 export default function DenominationView() {
-  const { denomination, set } = useOnboarding((state) => state);
+  const denomination = useOnboarding((state) => state.denomination);
+  const set = useOnboarding((state) => state.set);
 
   const scrollY = useSharedValue(0);
   const contentHeight = useSharedValue(0);

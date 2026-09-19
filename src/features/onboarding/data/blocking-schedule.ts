@@ -1,8 +1,8 @@
 export enum ScheduleValue {
   MORNING = 'morning',
-  EVENING = 'EVENING',
-  SUNDAYS = 'SUNDAYS',
-  WORK_HOURS = 'WORK_HOURS',
+  EVENING = 'evening',
+  SUNDAYS = 'sundays',
+  WORK_HOURS = 'work-hours',
 }
 
 export type ScheduleOption = {

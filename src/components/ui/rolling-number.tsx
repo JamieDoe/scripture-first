@@ -11,20 +11,14 @@ import Animated, {
 const DIGITS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const DURATION = 380;
 const DEFAULT_DIGIT_HEIGHT = 80;
-const FADE_RATIO = 0.22; // share of the window that fades at each edge
+const FADE_RATIO = 0.25;
 
 type RollingNumberProps = {
   value: number;
   className?: string;
-  /** Height of each digit window — should suit the font size in `className`. */
   digitHeight?: number;
 };
 
-/**
- * An odometer-style number: every digit is its own 0–9 strip that rolls to the
- * right value, so digits move independently. Each strip is masked with a fade
- * at the top and bottom so digits dissolve in and out rather than hard-clip.
- */
 export function RollingNumber({
   value,
   className,
@@ -33,15 +27,15 @@ export function RollingNumber({
   const characters = useMemo(() => String(value).split(''), [value]);
 
   return (
-    <View className="flex-row">
+    <View className="flex-row" accessible accessibilityLabel={String(value)}>
       {characters.map((char, i) => {
         const digit = Number(char);
 
-        // Separators (commas, currency symbols) don't roll.
         if (Number.isNaN(digit)) {
           return (
             <Text
-              key={`${i}-${char}`}
+              // eslint-disable-next-line react/no-array-index-key
+              key={i}
               className={className}
               style={{ height: digitHeight, lineHeight: digitHeight }}
             >
@@ -50,6 +44,7 @@ export function RollingNumber({
           );
         }
 
+        // eslint-disable-next-line react/no-array-index-key
         return <Digit key={i} digit={digit} height={digitHeight} className={className} />;
       })}
     </View>

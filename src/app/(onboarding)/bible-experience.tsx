@@ -6,8 +6,10 @@ import { EXPERIENCE_OPTIONS } from '@/features/onboarding/data/bible-experience'
 import { useOnboarding } from '@/features/onboarding/stores/onboarding.store';
 import { router } from 'expo-router';
 
-export default function BibleExperience() {
-  const { bibleExperience, set } = useOnboarding((state) => state);
+export default function BibleExperienceView() {
+  const bibleExperience = useOnboarding((state) => state.bibleExperience);
+  const set = useOnboarding((state) => state.set);
+
   return (
     <StepScreen
       title={
@@ -16,7 +18,7 @@ export default function BibleExperience() {
           <Text className="text-primary-deep font-serif-regular">Bible</Text>?
         </>
       }
-      subtitle="There’s no wrong answer"
+      subtitle="There's no wrong answer"
       ctaDisabled={!bibleExperience}
       onContinue={() => router.push('/(onboarding)/screen-time-access')}
     >

@@ -5,11 +5,11 @@ import { Button, Text, View } from 'react-native';
 import { useScreenTimeAuthorization } from '../../features/screen-time/hooks/useScreenTimeAuthorization';
 
 export default function Index() {
-  const reset = useOnboarding((state) => state.reset);
-  const { status, isRequesting, request } = useScreenTimeAuthorization();
   const [summary, setSummary] = useState<AppSelectionSummary | null>(null);
   const [blocking, setBlocking] = useState(false);
-  console.log('Hello Home 🚀');
+
+  const { status, isRequesting, request } = useScreenTimeAuthorization();
+  const reset = useOnboarding((state) => state.reset);
 
   useEffect(() => {
     setSummary(ScreenTime.getSelectionSummary());

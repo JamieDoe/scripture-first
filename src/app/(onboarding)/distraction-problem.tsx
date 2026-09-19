@@ -20,7 +20,7 @@ export default function DistractionProblemView() {
     >
       <View className="flex gap-7 pt-20">
         <FadeUp index={0}>
-          <Text className="text-foreground font-serif text-[40px] leading-14">
+          <Text className="text-foreground text-onboarding-title font-serif">
             Feel like your phone pulls you away from time with{' '}
             <Text className="text-primary-deep font-serif-regular">God</Text>?
           </Text>
