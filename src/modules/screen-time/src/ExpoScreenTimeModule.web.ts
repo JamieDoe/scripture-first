@@ -17,6 +17,10 @@ class ExpoScreenTimeModule extends NativeModule {
     return 'unsupported';
   }
 
+  async revokeAuthorization(): Promise<AuthorizationStatus> {
+    return 'unsupported';
+  }
+
   async selectApps(): Promise<AppSelectionSummary | null> {
     return null;
   }

@@ -25,6 +25,22 @@ public class ExpoScreenTimeModule: Module {
             return Self.statusString()
         }
 
+        // TEMP (dev-only): revoke the Screen Time grant so the request prompt can be
+        // re-triggered when testing the onboarding flow. Remove before release.
+        AsyncFunction("revokeAuthorization") { (promise: Promise) in
+            guard #available(iOS 16.0, *) else {
+                promise.reject("UNSUPPORTED", "Family Controls requires iOS 16+"); return
+            }
+            AuthorizationCenter.shared.revokeAuthorization { result in
+                switch result {
+                case .success:
+                    promise.resolve(Self.statusString())
+                case .failure(let error):
+                    promise.reject("REVOKE_FAILED", error.localizedDescription)
+                }
+            }
+        }
+
         AsyncFunction("selectApps") { (promise: Promise) in
             DispatchQueue.main.async {
                 guard #available(iOS 16.0, *) else {

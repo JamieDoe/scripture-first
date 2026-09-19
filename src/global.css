@@ -18,6 +18,8 @@
   --color-primary-light: #d3a64b;
   --color-primary-deep: #b4862c;
   --color-primary-pressed: #bc8c33;
+  --color-primary-pressed-light: #c08f32;
+  --color-primary-pressed-deep: #a2761f;
   --color-primary-foreground: #fffdf7;
   --color-primary-text: #8a6216;
   --color-primary-text-strong: #6e4e11;
@@ -44,6 +46,13 @@
     inset 0px -1px 4px rgba(120, 84, 20, 0.35);
 
   --font-serif: 'Newsreader_300Light';
+  --font-serif-regular: 'Newsreader_400Regular';
   --font-serif-medium: 'Newsreader_500Medium';
   --font-serif-semibold: 'Newsreader_600SemiBold';
+
+  --text-onboarding-title: 40px;
+  --text-onboarding-title--line-height: 56px;
+
+  --text-onboarding-hero: 56px;
+  --text-onboarding-hero--line-height: 64px;
 }

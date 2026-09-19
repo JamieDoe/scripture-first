@@ -1,6 +1,7 @@
-import { useOnboarding } from '@/stores/onboarding.store';
+import { useOnboarding } from '@/features/onboarding/stores/onboarding.store';
 import {
   Newsreader_300Light,
+  Newsreader_400Regular,
   Newsreader_500Medium,
   Newsreader_600SemiBold,
   useFonts,
@@ -13,6 +14,7 @@ export default function RootLayout() {
   const hasOnboarded = useOnboarding((state) => state.hasOnboarded);
   const [loaded] = useFonts({
     Newsreader_300Light,
+    Newsreader_400Regular,
     Newsreader_500Medium,
     Newsreader_600SemiBold,
   });

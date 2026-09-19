@@ -7,7 +7,7 @@ type CardProps = ViewProps &
     className?: string;
   };
 
-const cardVariants = cva('rounded-card p-5', {
+const cardVariants = cva('rounded-4xl p-5', {
   variants: {
     variant: {
       default: 'bg-card border border-border',
