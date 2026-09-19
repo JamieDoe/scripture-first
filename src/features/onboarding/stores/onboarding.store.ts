@@ -1,3 +1,4 @@
+import ScreenTime from '@scripture-first/screen-time';
 import { createMMKV } from 'react-native-mmkv';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
@@ -47,8 +48,14 @@ export const useOnboarding = create<OnboardingState>()(
       ...DEFAULTS,
       hasOnboarded: false,
       set: (patch) => set(patch),
-      complete: () => set({ hasOnboarded: true }),
-      reset: () => set({ ...DEFAULTS, hasOnboarded: false }),
+      complete: () => {
+        ScreenTime.startBlocking();
+        set({ hasOnboarded: true });
+      },
+      reset: () => {
+        ScreenTime.stopBlocking();
+        set({ ...DEFAULTS, hasOnboarded: false });
+      },
     }),
     { name: 'onboarding', storage: createJSONStorage(() => mmkvStorage) },
   ),
