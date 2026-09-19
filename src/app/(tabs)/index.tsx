@@ -1,4 +1,4 @@
-import { useOnboarding } from '@/stores/onboarding.store';
+import { useOnboarding } from '@/features/onboarding/stores/onboarding.store';
 import ScreenTime, { type AppSelectionSummary } from '@scripture-first/screen-time';
 import { useEffect, useState } from 'react';
 import { Button, Text, View } from 'react-native';

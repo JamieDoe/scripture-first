@@ -20,14 +20,14 @@ struct AppPickerView: View {
     var body: some View {
         NavigationView {
             FamilyActivityPicker(selection: $selection)
-                .navigationTitle("Choose apps to block")
+                .navigationTitle("Choose Apps")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Cancel", action: onCancel)
                     }
                     ToolbarItem(placement: .confirmationAction) {
-                        Button("Done") { onDone(selection) }
+                        Button("Select Apps") { onDone(selection)}.buttonStyle(.borderedProminent)
                     }
                 }
         }

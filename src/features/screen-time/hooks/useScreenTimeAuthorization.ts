@@ -24,5 +24,12 @@ export function useScreenTimeAuthorization() {
     }
   }, []);
 
-  return { status, isRequesting, isAuthorized: status === 'approved', request };
+  // TEMP (dev-only): revoke the grant so the request prompt can be re-tested.
+  const revoke = useCallback(async () => {
+    const next = await ScreenTime.revokeAuthorization();
+    setStatus(next);
+    return next;
+  }, []);
+
+  return { status, isRequesting, isAuthorized: status === 'approved', request, revoke };
 }
